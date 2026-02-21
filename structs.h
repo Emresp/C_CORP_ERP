@@ -16,8 +16,8 @@ typedef struct
 typedef struct Personel
 {
     int id;
-    char ad[20];
-    char soyad[20];
+    char isim[20];
+    char soyisim[20];
     char departman[30];
     char sifre[30];
     double maas;

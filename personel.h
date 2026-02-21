@@ -5,4 +5,6 @@
 #ifndef C_CORP_ERP_PERSONEL_H
 #define C_CORP_ERP_PERSONEL_H
 
+void personelEkle();
+
 #endif //C_CORP_ERP_PERSONEL_H

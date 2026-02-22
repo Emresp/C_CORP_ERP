@@ -71,14 +71,14 @@ void personelEkle()
     yeniPersonel->sonraki = NULL;
     yeniPersonel->onceki = NULL;
 
-    //Eğer liste tamamen boşsa, bu kişi ilk personel olur
+    //Liste başı NULL değerine eşit mi
     if (personelListesininBasi==NULL)
     {
-        //Eğer varsa yenipersonelimiz liste basşı olabilir
+        //Eğer NULL değerine eşitse yani liste başı boşsa yenipersoneli listebaşına koyduk
         personelListesininBasi = yeniPersonel;
     }
 
-    //Yoksa listeyi gezicez
+    //Liste başı varsa burası çalışcak
     else
     {
         //Listeyi gezip sonraki değişkeni NULL olan bir yer bulması için gezici yani scout oluşturduk
@@ -94,4 +94,35 @@ void personelEkle()
         yeniPersonel->onceki = scout;
     }
 
+}
+
+void personelListele()
+{
+    int i=1;
+    if (personelListesininBasi==NULL)
+    {
+     printf("HATA:Kayıtlı personeller bulunamadı");
+    }
+
+    else
+    {
+        Personel* scout=personelListesininBasi;
+
+        while(scout!=NULL)
+        {
+            printf("%d\n",i);
+            printf("İD:%d\n",scout->id);
+            printf("İSİM:%s\n",scout->isim);
+            printf("SOYİSİM:%s\n",scout->soyisim);
+            printf("DEPARTMAN:%s\n",scout->departman);
+            printf("MAAŞ:%lf\n",scout->maas);
+            printf("PERFORMANS:%d\n",scout->performansPuani);
+            printf("MÜDÜR İD:%d\n",scout->bagliolduguYonetici);
+
+            printf("\n\n");
+
+            i++;
+            scout=scout->sonraki;
+        }
+    }
 }

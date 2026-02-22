@@ -7,6 +7,7 @@
 
 void personelEkle();
 void personelListele();
+void personelAra();
 
 
 #endif //C_CORP_ERP_PERSONEL_H

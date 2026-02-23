@@ -131,7 +131,7 @@ void personelAra()
 {
     if (personelListesininBasi==NULL)
     {
-        printf("Kayıtlı Hiç Bir Kullanıcı Yok");
+        printf("Kayıtlı Hiç Bir Kullanıcı Yok\n");
         return;
     }
 
@@ -222,6 +222,92 @@ void personelAra()
     //Bayrak fonksiyon bitmesine rağmen hala 0 ise birini bulamamştır
     if (flag==0)
     {
-        printf("Aradığınız kriterlere uygun bir personel bulunamadı.");
+        printf("Aradığınız kriterlere uygun bir personel bulunamadı.\n");
     }
+}
+
+void personelSil()
+{
+    int silincekPersonelID;
+    char cevap[10];
+    //Liste Boş Mu kontrolü
+    if (personelListesininBasi==NULL)
+    {
+        printf("Kayıtlı Hiçbir Kullanıcı Bulunamadı\n");
+        return;
+    }
+
+    printf("Lüten Silmek İstediğiniz Kişinin ID Numarasını Giriniz.\n");
+    printf("ID:");
+    scanf("%d",&silincekPersonelID);
+
+    Personel* scout=personelListesininBasi;
+
+    while (scout!=NULL)
+    {
+        if (scout->id==silincekPersonelID)
+        {
+            printf("AŞAĞIDA BİLGİLERİ BULUNAN %d ID NUMARASINA SAHİP KULLANICIYI SİLMEYİ ONAYLIYOR MUSUNUZ ?\n",silincekPersonelID);
+            printf("bu işlemin geri dönüşü yoktur\n\n");
+
+            printf("İD:%d\n",scout->id);
+            printf("İSİM:%s\n",scout->isim);
+            printf("SOYİSİM:%s\n",scout->soyisim);
+            printf("DEPARTMAN:%s\n",scout->departman);
+            printf("MAAŞ:%lf\n",scout->maas);
+            printf("PERFORMANS:%d\n",scout->performansPuani);
+            printf("MÜDÜR İD:%d\n",scout->bagliolduguYonetici);
+
+            //Kontrol sorusu
+            printf("İŞLEMİN SONLANMASI İÇİN ONAY YAZIN, İŞLEMİN DURDURULMASI İÇİN HERHANGİ BİR SAYI GİRİN");
+            scanf("%s",cevap);
+            break;
+        }
+
+        scout=scout->sonraki;
+    }
+
+    //Döngü bitmese
+    if (scout == NULL)
+    {
+        printf("Bu ID numarasina sahip bir personel bulunamadi.\n");
+        return;
+    }
+
+    if (strcmp(cevap,"ONAY") ==0)
+    {
+        //Scout liste başına eşitse ve yanı boşsa burası çalışır yani listede tek kişi var
+        if (scout == personelListesininBasi && scout->sonraki==NULL)
+        {
+            personelListesininBasi=NULL;
+        }
+        //Scout Liste başına eşit ve yannında biri varsa yani liste doluyken listebaşını silmek
+        else if (scout == personelListesininBasi&&scout->sonraki!=NULL)
+        {
+            personelListesininBasi=scout->sonraki;
+            scout->sonraki->onceki=NULL;
+
+        }
+        //Scotun sonrasında biri yoksa yani en sonda ise
+        else if (scout->sonraki==NULL&& scout->onceki!=NULL)
+        {
+            scout->onceki->sonraki=NULL;
+        }
+        //Scoutun etrafı doluysa
+        else
+        {
+            scout->onceki->sonraki=scout->sonraki;
+            scout->sonraki->onceki=scout->onceki;
+        }
+        free(scout);
+        printf("%d Numarasına Sahip Personel basariyla kalıcı bir şekilde sirketten silindi.\n",silincekPersonelID);
+    }
+    else
+    {
+        printf("İŞLEM DURDURLUMUŞTUR.");
+        return;
+    }
+
+
+
 }

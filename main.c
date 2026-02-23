@@ -16,7 +16,9 @@ int main(void)
         printf("Lütfen bir seçim yaparak başlayınız.\n");
         printf("1-)Personel eklemek için\n");
         printf("2-)Personel Listesini Görüntülemek İçin\n");
-        printf("3-)Çıkış Yapmak için\n");
+        printf("3-)Personel Aramak için\n");
+        printf("4-)Personel Silmek için\n");
+        printf("5-)Çıkış Yapmak için\n");
         printf("Seçim:");
         scanf("%d",&secim);
 
@@ -29,10 +31,20 @@ int main(void)
             case 2:
                 personelListele();
                 break;
+
             case 3:
+                personelAra();
+                break;
+            case 4:
+                personelSil();
+                break;
+            case 5:
                 printf("Çıkış Yapılıyor");
                 return 0;
+
             default:
+                printf("Lütfen Geçerli Bir Seçim Yapınız.");
+                break;
 
 
         }

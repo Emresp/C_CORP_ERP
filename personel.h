@@ -9,6 +9,7 @@ void personelEkle();
 void personelListele();
 void personelAra();
 void personelSil();
+void personelGuncelle();
 
 
 #endif //C_CORP_ERP_PERSONEL_H

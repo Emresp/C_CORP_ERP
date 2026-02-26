@@ -35,7 +35,7 @@ void personelEkle()
     printf("\n\n");
 
     printf("Personel Soyismini Giriniz\n");
-    printf("İsim:");
+    printf("Soyisim:");
     scanf("%s",yeniPersonel->soyisim);
 
     printf("\n\n");
@@ -115,7 +115,7 @@ void personelListele()
             printf("İSİM:%s\n",scout->isim);
             printf("SOYİSİM:%s\n",scout->soyisim);
             printf("DEPARTMAN:%s\n",scout->departman);
-            printf("MAAŞ:%lf\n",scout->maas);
+            printf("MAAŞ:%.2lf\n",scout->maas);
             printf("PERFORMANS:%d\n",scout->performansPuani);
             printf("MÜDÜR İD:%d\n",scout->bagliolduguYonetici);
 
@@ -307,7 +307,165 @@ void personelSil()
         printf("İŞLEM DURDURLUMUŞTUR.");
         return;
     }
+}
 
+void personelGuncelle()
+{
+    int guncellemekIstenenID;
+    char kullanicigirdi[40];
+
+    //Liste Boş Mu kontrolü
+    if (personelListesininBasi==NULL)
+    {
+        printf("Kayıtlı Hiçbir Kullanıcı Bulunamadı\n");
+        return;
+    }
+
+
+    //Guncelleme yapılcak personelin ID numarasını istedik
+    printf("Personel Bilgilerini Güncellemek İstediğiniz Kişinin Numarasını Giriniz\n");
+    printf("ID:");
+    scanf("%d",&guncellemekIstenenID);
+    getchar();
+
+    //Personel Türünde scout adında bir pointer oluşutup listenin başını gösterdik
+    Personel* scout=personelListesininBasi;
+
+    //scout boş değilse dönmeye devam etsin
+    while (scout!=NULL)
+    {
+        //scout id aranan id'ye eşit mi kontrolü
+        if (scout->id==guncellemekIstenenID)
+        {
+            break;
+        }
+
+        //Döngünün sonunda bir sonraki personele geçmesi için
+        scout=scout->sonraki;
+    }
+
+    //scout boş mu kontrolü
+    if (scout == NULL)
+    {
+        printf("Bu ID numarasina sahip bir personel bulunamadi.\n");
+        return;
+    }
+
+    printf("PERSONELİN YENİ BİLGİLERİNİ GİRİİP ENTER TUŞUNA BASIN BİLGİ DEĞİŞKİLİĞİ YAPMAK İSTEMEDİĞİNİZ YERLERDE SADECE ENTER TUŞUNA BASIN\n\n");
+
+    //Eski bilgisini gösteriyoruz
+    printf("İsim [%s]:",scout->isim);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //
+        strcpy(scout->isim,kullanicigirdi);
+    }
+
+    //Eski bilgisini gösteriyoruz
+    printf("Soysim [%s]:",scout->soyisim);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //
+        strcpy(scout->soyisim,kullanicigirdi);
+    }
+
+    //Eski bilgisini gösteriyoruz
+    printf("Departman [%s]:",scout->departman);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //
+        strcpy(scout->departman,kullanicigirdi);
+    }
+
+    //Eski bilgisini gösteriyoruz
+    printf("Maaş [%.2lf]:",scout->maas);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //ASCII türünde olan double veri tipine çeviriyoruz ve öyle atama yapıyoruz
+        scout->maas=atof(kullanicigirdi);
+    }
+
+    //Eski bilgisini gösteriyoruz
+    printf("Performanspuanı [%d]:",scout->performansPuani);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //ASCII türünde olan int veri tipine çeviriyoruz ve öyle atama yapıyoruz
+        scout->performansPuani=atoi(kullanicigirdi);
+    }
+
+    //Eski bilgisini gösteriyoruz
+    printf("Bağlı Olduğu Yönetici ID [%d]:",scout->bagliolduguYonetici);
+    //Kullanıcıdan girdi bekliyoruz
+    fgets(kullanicigirdi,sizeof(kullanicigirdi),stdin);
+
+    //Kullanıcı ENTER tuşuna basarsa fgest onu \n diye kayıt eder
+    //Girdi /n değil mi diye soruyoruz
+    //Aslında boş mu geçti yeni bir bilgi mi girdi diye bakıyoruz
+    if (kullanicigirdi[0]!='\n')
+    {
+        //Yeni bilgi girildiyse bu blok çalışır
+
+        //fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu silmemiz lazım.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+
+        //ASCII türünde olan int veri tipine çeviriyoruz ve öyle atama yapıyoruz
+        scout->bagliolduguYonetici=atoi(kullanicigirdi);
+    }
 
 
 }

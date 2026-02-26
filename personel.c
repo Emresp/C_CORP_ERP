@@ -90,6 +90,7 @@ void personelEkle()
             scout=scout->sonraki;
         }
 
+        //Personellerin kayıtlı olduğu adresleri birbirine bağladık
         scout->sonraki = yeniPersonel;
         yeniPersonel->onceki = scout;
     }
@@ -466,6 +467,5 @@ void personelGuncelle()
         //ASCII türünde olan int veri tipine çeviriyoruz ve öyle atama yapıyoruz
         scout->bagliolduguYonetici=atoi(kullanicigirdi);
     }
-
 
 }

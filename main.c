@@ -18,7 +18,8 @@ int main(void)
         printf("2-)Personel Listesini Görüntülemek İçin\n");
         printf("3-)Personel Aramak için\n");
         printf("4-)Personel Silmek için\n");
-        printf("5-)Çıkış Yapmak için\n");
+        printf("5-) Personel Güncellemek için\n");
+        printf("6-)Çıkış Yapmak için\n");
         printf("Seçim:");
         scanf("%d",&secim);
 
@@ -39,6 +40,9 @@ int main(void)
                 personelSil();
                 break;
             case 5:
+                personelGuncelle();
+                break;
+            case 6:
                 printf("Çıkış Yapılıyor");
                 return 0;
 

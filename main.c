@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
+
+#include "dosya.h"
 #include "personel.h"
 
 int main(void)
@@ -8,6 +10,8 @@ int main(void)
     //Türkçe çalışmak için
     SetConsoleOutputCP(65001); // Ekranı UTF-8
     SetConsoleCP(65001);       // Klavyeyi de UTF-8
+
+    personelleriYukle();
 
     int secim;
     while (1)
@@ -43,7 +47,8 @@ int main(void)
                 personelGuncelle();
                 break;
             case 6:
-                printf("Çıkış Yapılıyor");
+                printf("Çıkış Yapılıyor\n");
+                personelleriKaydet();
                 return 0;
 
             default:

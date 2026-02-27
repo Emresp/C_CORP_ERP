@@ -1,9 +1,10 @@
-//
-// Created by Emre on 18.02.2026.
-//
+#include "structs.h"
 
 #ifndef C_CORP_ERP_PERSONEL_H
 #define C_CORP_ERP_PERSONEL_H
+
+//Personel.c dosyasının içindeki personellistesinin bası pointerını her yerde kullanabilmek için extern kullandık
+extern Personel* personelListesininBasi;
 
 void personelEkle();
 void personelListele();

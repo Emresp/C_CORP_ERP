@@ -3,6 +3,7 @@
 
 #include "dosya.h"
 #include "personel.h"
+#include "urun.h"
 
 int main(void)
 {
@@ -23,7 +24,8 @@ int main(void)
         printf("3-)Personel Aramak için\n");
         printf("4-)Personel Silmek için\n");
         printf("5-) Personel Güncellemek için\n");
-        printf("6-)Çıkış Yapmak için\n");
+        printf("6-) Ürun Eklemek İiçin");
+        printf("7-)Çıkış Yapmak için\n");
         printf("Seçim:");
         scanf("%d",&secim);
 
@@ -47,6 +49,9 @@ int main(void)
                 personelGuncelle();
                 break;
             case 6:
+                urunEkle();
+                break;
+            case 7:
                 printf("Çıkış Yapılıyor\n");
                 personelleriKaydet();
                 return 0;

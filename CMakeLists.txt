@@ -10,4 +10,6 @@ add_executable(C_CORP_ERP main.c
         personel.c
         personel.h
         dosya.c
-        dosya.h)
+        dosya.h
+        urun.c
+        urun.h)

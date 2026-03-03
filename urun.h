@@ -6,5 +6,6 @@ extern Urun* urunListesininBasi;
 #define C_CORP_ERP_URUN_H
 
 void urunEkle();
+void urunListele();
 
 #endif //C_CORP_ERP_URUN_H

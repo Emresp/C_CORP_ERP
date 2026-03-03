@@ -37,6 +37,10 @@ void urunEkle()
     printf("Fiyat:");
     scanf("%lf",&yeniUrun->fiyat);
 
+    printf("Ürün zimmetli ise personel ID numarsını giriniz:\n");
+    printf("Personel ID:");
+    scanf("%d",&yeniUrun->zimmetliPersonelid);
+
     yeniUrun->sonraki = NULL;
     yeniUrun->onceki = NULL;
 
@@ -59,4 +63,36 @@ void urunEkle()
     }
 
     printf("\nUrun stoga basariyla eklendi!\n");
+}
+
+void urunListele()
+{
+
+    int i=1;
+    if (urunListesininBasi==NULL)
+    {
+        printf("HATA: Listelencek ürün bulunamadı.");
+    }
+
+    else
+    {
+        Urun* scout=urunListesininBasi;
+
+        while (scout!=NULL)
+        {
+            printf("%d\n",i);
+            printf("ID:%d\n",scout->id);
+            printf("Ürün Adı:%s\n",scout->urunadi);
+            printf("Kategori:%s\n",scout->kategori);
+            printf("Stok Adedi:%d\n",scout->stokAdedi);
+            printf("Fiyat:%lf\n",scout->fiyat);
+            printf("Ziimetli Personel ID:%d\n",scout->zimmetliPersonelid);
+
+            printf("\n\n");
+
+            i++;
+            scout=scout->sonraki;
+        }
+    }
+
 }

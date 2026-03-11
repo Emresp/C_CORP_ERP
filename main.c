@@ -13,6 +13,7 @@ int main(void)
     SetConsoleCP(65001);       // Klavyeyi de UTF-8
 
     personelleriYukle();
+    urunleriYukle();
 
     int secim;
     while (1)
@@ -70,6 +71,7 @@ int main(void)
             case 11:
                 printf("Çıkış Yapılıyor\n");
                 personelleriKaydet();
+                urunleriKaydet();
                 return 0;
 
             default:

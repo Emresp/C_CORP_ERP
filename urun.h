@@ -9,5 +9,6 @@ void urunEkle();
 void urunListele();
 void urunAra();
 void urunGuncelle();
+void urunSil();
 
 #endif //C_CORP_ERP_URUN_H

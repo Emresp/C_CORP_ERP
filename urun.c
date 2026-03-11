@@ -289,3 +289,79 @@ void urunGuncelle()
 
     printf("\nÜrün bilgileri başarıyla güncellendi!\n");
 }
+
+void urunSil()
+{
+    if (urunListesininBasi==NULL)
+    {
+        printf("Ürün listesi boş arancak ürün yok");
+        return;
+    }
+    int silincekUrunid;
+    char cevap[10];
+
+    printf("Silmek istedeiğiniz ürünün id numarasını giriniz.");
+    scanf("%d", &silincekUrunid);
+    getchar();
+
+    Urun* scout = urunListesininBasi;
+
+    while (scout != NULL)
+    {
+
+        if (scout->id == silincekUrunid)
+        {
+            printf("AŞAĞIDA BİLGİLERİ BULUNAN %d ID NUMARASINA SAHİP ÜRÜNÜ SİLMEYİ ONAYLIYOR MUSUNUZ ?\n",silincekUrunid);
+            printf("bu işlemin geri dönüşü yoktur\n\n");
+
+            printf("İD:%d\n",scout->id);
+            printf("İSİM:%s\n",scout->urunadi);
+            printf("KATEGORİ:%s\n",scout->kategori);
+            printf("STOK:%d\n",scout->stokAdedi);
+            printf("FİYAT:%.2lf\n",scout->fiyat);
+            printf("ZİMMETLİ PERSONELİN İD NUMARASI:%d\n",scout->zimmetliPersonelid);
+
+            //Kontrol sorusu
+            printf("İŞLEMİN SONLANMASI İÇİN 'ONAY' YAZIN, İŞLEMİN DURDURULMASI İÇİN HERHANGİ BİR SAYI GİRİN");
+            scanf("%s",cevap);
+            break;
+        }
+
+        scout=scout->sonraki;
+    }
+
+    if (scout == NULL)
+    {
+        printf("Bu id numarasına sahip ürün bulunamadı");
+        return;
+    }
+
+    if (strcmp(cevap,"ONAY")==0)
+    {
+        if (scout==urunListesininBasi&&scout->sonraki==NULL)
+        {
+             urunListesininBasi=NULL;
+        }
+        else if (scout==urunListesininBasi && scout->sonraki!=NULL)
+        {
+            urunListesininBasi=scout->sonraki;
+            scout->sonraki->onceki=NULL;
+        }
+        else if (scout->sonraki==NULL&&scout->onceki!=NULL)
+        {
+            scout->onceki->sonraki=NULL;
+        }
+        else
+        {
+            scout->onceki->sonraki=scout->sonraki;
+            scout->sonraki->onceki=scout->onceki;
+        }
+        free(scout);
+        printf("%d Numarasına Sahip ürün basariyla kalıcı bir şekilde sirketten silindi.\n",silincekUrunid);
+    }
+    else
+    {
+        printf("işlem durdurulmuştur.");
+        return;
+    }
+}

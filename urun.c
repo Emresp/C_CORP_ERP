@@ -183,3 +183,109 @@ void urunAra()
 
 
 }
+
+void urunGuncelle()
+{
+    int guncellenecekUrunid;
+    char kullanicigirdi[50]; // Kullanıcının girdiği metni tutacağım değişken
+
+    if (urunListesininBasi == NULL)
+    {
+        printf("HATA: Güncellenecek hiçbir ürün bulunamadı.\n");
+        return;
+    }
+
+    Urun* scout = urunListesininBasi;
+
+    printf("Güncellemek istediğiniz ürünün ID numarasını giriniz: ");
+    scanf("%d", &guncellenecekUrunid);
+
+    // DİKKAT: scanf'ten sonra klavyede basılan Enter (\n) karakterini temizliyorum ki
+    // aşağıdaki ilk fgets bu Enter'ı görüp direkt satırı atlamasın.
+    getchar();
+
+    while (scout != NULL)
+    {
+        if (scout->id == guncellenecekUrunid)
+        {
+            // Aranan id numarası bulunursa döngüyü kırıyorum
+            break;
+        }
+        // Döngü döndükçe bir sonraki ürüne geçiyorum
+        scout = scout->sonraki;
+    }
+
+    // scout boş mu kontrolü yapıyorum
+    if (scout == NULL)
+    {
+        printf("Bu ID numarasina sahip bir ürün bulunamadi.\n");
+        return;
+    }
+
+    printf("\nÜRÜNÜN YENİ BİLGİLERİNİ GİRİP ENTER TUŞUNA BASIN. DEĞİŞİKLİK YAPMAK İSTEMEDİĞİNİZ YERLERDE SADECE ENTER TUŞUNA BASIN.\n\n");
+
+    // --- ÜRÜN ADI ---
+    // Eski bilgisini gösteriyorum
+    printf("Ürün Adı [%s]: ", scout->urunadi);
+    // Kullanıcıdan girdi bekliyorum
+    fgets(kullanicigirdi, sizeof(kullanicigirdi), stdin);
+
+    // Kullanıcı ENTER tuşuna basarsa fgets onu \n diye kayıt eder
+    // Aslında boş mu geçti, yeni bir bilgi mi girdi diye bakıyorum
+    if (kullanicigirdi[0] != '\n')
+    {
+        // Yeni bilgi girildiyse bu blok çalışır
+        // fgets kelimenin sonuna otomatik olarak bir Enter (\n) ekler. Onu siliyorum.
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+        strcpy(scout->urunadi, kullanicigirdi);
+    }
+
+    // --- KATEGORİ ---
+    // Eski bilgisini gösteriyorum
+    printf("Kategori [%s]: ", scout->kategori);
+    fgets(kullanicigirdi, sizeof(kullanicigirdi), stdin);
+
+    if (kullanicigirdi[0] != '\n')
+    {
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+        strcpy(scout->kategori, kullanicigirdi);
+    }
+
+    // --- STOK ADEDİ ---
+    // Eski bilgisini gösteriyorum
+    printf("Stok Adedi [%d]: ", scout->stokAdedi);
+    fgets(kullanicigirdi, sizeof(kullanicigirdi), stdin);
+
+    if (kullanicigirdi[0] != '\n')
+    {
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+        // ASCII türünde olan int veri tipine çeviriyorum ve öyle atama yapıyorum
+        scout->stokAdedi = atoi(kullanicigirdi);
+    }
+
+    // --- FİYAT ---
+    // Eski bilgisini gösteriyorum
+    printf("Fiyat [%.2lf]: ", scout->fiyat);
+    fgets(kullanicigirdi, sizeof(kullanicigirdi), stdin);
+
+    if (kullanicigirdi[0] != '\n')
+    {
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+        // ASCII türünde olan double veri tipine çeviriyorum ve öyle atama yapıyorum
+        scout->fiyat = atof(kullanicigirdi);
+    }
+
+    // --- ZİMMETLİ PERSONEL ID ---
+    // Eski bilgisini gösteriyorum
+    printf("Zimmetli Personel ID [%d]: ", scout->zimmetliPersonelid);
+    fgets(kullanicigirdi, sizeof(kullanicigirdi), stdin);
+
+    if (kullanicigirdi[0] != '\n')
+    {
+        kullanicigirdi[strcspn(kullanicigirdi, "\n")] = '\0';
+        // ASCII türünde olan int veri tipine çeviriyorum ve öyle atama yapıyorum
+        scout->zimmetliPersonelid = atoi(kullanicigirdi);
+    }
+
+    printf("\nÜrün bilgileri başarıyla güncellendi!\n");
+}

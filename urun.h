@@ -8,6 +8,6 @@ extern Urun* urunListesininBasi;
 void urunEkle();
 void urunListele();
 void urunAra();
-
+void urunGuncelle();
 
 #endif //C_CORP_ERP_URUN_H

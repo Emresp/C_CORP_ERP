@@ -27,8 +27,9 @@ int main(void)
         printf("6-) Ürun Eklemek için\n");
         printf("7-) Ürün Listesini Görmek için\n");
         printf("8-) Ürün aramak için\n");
-        printf("9-)Ürün güncellemek için\n");
-        printf("10-)Çıkış Yapmak için\n");
+        printf("9-) Ürün güncellemek için\n");
+        printf("10-) Ürün Silmek İçin\n");
+        printf("11-)Çıkış Yapmak için\n");
         printf("Seçim:");
         scanf("%d",&secim);
 
@@ -64,6 +65,9 @@ int main(void)
                 urunGuncelle();
                 break;
             case 10:
+                urunSil();
+                break;
+            case 11:
                 printf("Çıkış Yapılıyor\n");
                 personelleriKaydet();
                 return 0;

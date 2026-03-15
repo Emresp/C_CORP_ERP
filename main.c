@@ -4,6 +4,7 @@
 #include "dosya.h"
 #include "personel.h"
 #include "urun.h"
+#include "tools.h"
 
 int main(void)
 {
@@ -15,9 +16,14 @@ int main(void)
     personelleriYukle();
     urunleriYukle();
 
+    devamIcinBekle();
+
     int secim;
     while (1)
     {
+        ekraniTemizle();
+        sistemSaatiniYazdir();
+
         printf("SİSTEM KONTROL PANELİNE HOŞ GELDİNİZ.\n\n\n");
         printf("Lütfen bir seçim yaparak başlayınız.\n");
         printf("1-)Personel eklemek için\n");
@@ -77,10 +83,15 @@ int main(void)
             default:
                 printf("Lütfen Geçerli Bir Seçim Yapınız.");
                 break;
-
-
         }
-
+        if (secim != 11) // Eğer kullanıcı çıkmak istemediyse ekranı okuması için durmasını sağlıyoruz
+        {
+            devamIcinBekle();
+        }
+        else // eğer kullanıcı 11'e basarsa direk çıkış yapıyoruz
+        {
+            break;
+        }
     }
 
 

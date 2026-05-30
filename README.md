@@ -81,7 +81,7 @@ Program ana menüsü üzerinden sistem iki ana modüle ayrılır ve aşağıdaki
   
 ## Yazar
 
-[![GitHub](https://img.shields.io/badge/GitHub-Emresp-181717?style=for-the-badge&logo=github)](https://github.com/Emresp) [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/emre-ayözcan-571ba3387)
+[![GitHub](https://img.shields.io/badge/GitHub-Emresp-181717?style=for-the-badge&logo=github)](https://github.com/Emresp) 
 
 
   
